@@ -1,0 +1,45 @@
+import java.util.*;
+
+class Student {
+    int[] scores = new int[5];
+
+    void input() {
+        Scanner sc = new Scanner(System.in);
+        for (int i = 0; i < scores.length; i++) {
+            scores[i] = sc.nextInt();
+        }
+    }
+
+    int calculateTotalScore() {
+        int sum = 0;
+        for (int mark : scores) {
+            sum += mark;
+        }
+        return sum;
+    }
+}
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        Student[] students = new Student[n];
+
+        for (int i = 0; i < n; i++) {
+            students[i] = new Student();
+            students[i].input();
+        }
+
+        int firstScore = students[0].calculateTotalScore();
+        int higherCount = 0;
+
+        for (int i = 1; i < n; i++) {
+            if (students[i].calculateTotalScore() > firstScore) {
+                higherCount++;
+            }
+        }
+
+        System.out.println(higherCount);
+    }
+}
